@@ -1,0 +1,25 @@
+--cpu Cortex-M3
+"cm15\startup_stm32f103xe.o"
+"cm15\main.o"
+"cm15\gpio.o"
+"cm15\spi.o"
+"cm15\stm32f1xx_it.o"
+"cm15\ssd1322_api.o"
+"cm15\ssd1322_gfx.o"
+"cm15\ssd1322_hw_driver.o"
+"cm15\fonts.o"
+"cm15\st7565.o"
+"cm15\bitmaps.o"
+"cm15\drillwidgets.o"
+"cm15\stm32f1xx_ll_gpio.o"
+"cm15\stm32f1xx_ll_spi.o"
+"cm15\stm32f1xx_ll_dma.o"
+"cm15\stm32f1xx_ll_rcc.o"
+"cm15\stm32f1xx_ll_utils.o"
+"cm15\stm32f1xx_ll_exti.o"
+"cm15\stm32f1xx_ll_pwr.o"
+"cm15\system_stm32f1xx.o"
+--strict --scatter "CM15\CM15.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "CM15.map" -o CM15\CM15.axf

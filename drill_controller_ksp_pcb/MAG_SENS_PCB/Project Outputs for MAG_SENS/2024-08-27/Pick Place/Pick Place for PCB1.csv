@@ -1,0 +1,26 @@
+Altium Designer Pick and Place Locations
+C:\Users\2\Desktop\drill_controller_ksp_pcb\MAG_SENS_PCB\Project Outputs for MAG_SENS\2024-08-27\Pick Place\Pick Place for PCB1.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       27.08.24
+Time:       11:01
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Footprint","Center-X(mm)","Center-Y(mm)","Rotation","Description"
+"X1","DC3-8P","TopLayer","CON:_DC3_2X4P","10.3650","5.4050","90",""
+"VD2","LED","TopLayer","VD_0603","27.9000","7.7375","270",""
+"VD1","LED","TopLayer","VD_0603","27.9000","3.7625","90",""
+"R8","10k","TopLayer","CH0402R","24.9000","9.3000","270",""
+"R7","10k","TopLayer","CH0402R","24.0000","6.7000","90",""
+"R6","10k","TopLayer","CH0402R","24.0000","3.4000","90",""
+"R2","1k","TopLayer","CH0402R","26.9000","9.8000","180",""
+"R1","1k","TopLayer","CH0402R","27.4000","1.8000","180",""
+"DA1","AS5311","BottomLayer","20-TSSOP","22.5000","5.5000","180",""
+"C4","0.1u","TopLayer","CH0805C","16.3000","3.6000","90",""
+"C3","0.1u","TopLayer","CH0603C","19.6000","4.9000","0",""
+"C2","4.7u","TopLayer","TANTAL_A","20.5000","1.9000","180",""
+"C1","4.7u","TopLayer","TANTAL_A","17.9000","7.8000","0",""

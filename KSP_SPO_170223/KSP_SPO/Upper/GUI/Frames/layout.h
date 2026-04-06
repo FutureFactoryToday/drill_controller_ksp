@@ -1,0 +1,16 @@
+#ifndef _LAYO_GUI_CM15_H
+#define _LAYO_GUI_CM15_H
+
+#include "main.h"
+
+#define HORIZONTAL_DISPLAY_SIZE 128
+#define VERTICAL_DISPLAY_SIZE 64
+
+#define STATUS_BAR_SIZER 12
+#define MAIN_BAR_SIZER 40
+#define HANDLE_BAR_SIZER 12
+
+#define RIGHT_VALIE_SPACER 22
+#define Y_VALIE_SPACER STATUS_BAR_SIZER + 6
+
+#endif 

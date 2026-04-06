@@ -1,0 +1,22 @@
+Altium Designer Pick and Place Locations
+C:\Users\2\Desktop\drill_controller_ksp_pcb\KSP_ENC\Project Outputs for KSP_ENC\2024-08-27\Pick Place\Pick Place.csv
+
+========================================================================================================================
+File Design Information:
+
+Date:       27.08.24
+Time:       10:56
+Revision:   Not in VersionControl
+Variant:    No variations
+Units used: mm
+
+"Designator","Comment","Layer","Footprint","Center-X(mm)","Center-Y(mm)","Rotation","Description"
+"X1","DNP","BottomLayer","CON:_PBD-6","4.0000","8.0000","270",""
+"R5","10k","TopLayer","CH0603R","10.9000","12.9000","0",""
+"R4","10k","TopLayer","CH0603R","10.8000","2.5000","0",""
+"R3","10k","TopLayer","CH0603R","19.0000","8.3000","0",""
+"R2","10k","TopLayer","CH0603R","21.0000","5.2000","90",""
+"R1","10k","TopLayer","CH0603R","21.0000","11.3000","270",""
+"C2","100nF","TopLayer","CH0603C","12.8000","9.5000","0",""
+"C1","100nF","TopLayer","CH0603C","12.8000","7.0000","0",""
+"BR1","Encoder 5pin","BottomLayer","ENC-5PIN","16.5500","8.0000","270",""

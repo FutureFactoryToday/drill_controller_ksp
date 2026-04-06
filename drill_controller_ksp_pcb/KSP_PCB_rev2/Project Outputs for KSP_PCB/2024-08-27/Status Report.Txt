@@ -1,0 +1,10 @@
+Output: Bill of Materials
+Type  : BOM
+From  : Variant [[No Variations]] of Project [KSP_PCB.PrjPcb]
+   Generated File[Bill of Materials-KSP_PCB.xlsx]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 10:53:35 On 27.08.2024

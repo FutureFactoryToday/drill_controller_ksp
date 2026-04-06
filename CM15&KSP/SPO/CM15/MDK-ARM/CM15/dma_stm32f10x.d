@@ -1,0 +1,11 @@
+cm15\dma_stm32f10x.o: C:/Users/Alexandr/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/RTE_Driver/DMA_STM32F10x.c
+cm15\dma_stm32f10x.o: C:/Users/Alexandr/AppData/Local/Arm/Packs/Keil/STM32F1xx_DFP/2.4.0/RTE_Driver/DMA_STM32F10x.h
+cm15\dma_stm32f10x.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+cm15\dma_stm32f10x.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+cm15\dma_stm32f10x.o: C:\Users\Alexandr\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include\stm32f10x.h
+cm15\dma_stm32f10x.o: .\RTE\_CM15\RTE_Components.h
+cm15\dma_stm32f10x.o: ../Drivers/CMSIS/Include/core_cm3.h
+cm15\dma_stm32f10x.o: ../Drivers/CMSIS/Include/cmsis_version.h
+cm15\dma_stm32f10x.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+cm15\dma_stm32f10x.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+cm15\dma_stm32f10x.o: C:\Users\Alexandr\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.0\Device\Include\system_stm32f10x.h

@@ -1,0 +1,435 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "adc.h"
+#include "dac.h"
+#include "dma.h"
+#include "spi.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+uint8_t tx_buf[256*64/2];
+
+uint32_t cntLine = 0;
+
+bool isOrigin = false;
+
+bool rpmChange = true;
+bool absChange = false;
+bool incChange = false;
+
+bool rpmEdit = false;
+bool absEdit = false;
+bool incEdit = false;
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+  /* USER CODE BEGIN 1 */
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_AFIO);
+  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
+
+  /* System interrupt init*/
+  NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
+
+  /* SysTick_IRQn interrupt configuration */
+  NVIC_SetPriority(SysTick_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),15, 0));
+
+  /** NOJTAG: JTAG-DP Disabled and SW-DP Enabled
+  */
+  LL_GPIO_AF_Remap_SWJ_NOJTAG();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_ADC1_Init();
+  MX_ADC2_Init();
+  MX_ADC3_Init();
+  MX_DAC_Init();
+  MX_SPI1_Init();
+  MX_TIM2_Init();
+  MX_TIM3_Init();
+  MX_USART1_UART_Init();
+  MX_USART3_UART_Init();
+  MX_TIM6_Init();
+  MX_TIM7_Init();
+  MX_TIM8_Init();
+  /* USER CODE BEGIN 2 */
+	//LL_GPIO_TogglePin(SW2_GPIO_Port,SW2_Pin);
+    LL_GPIO_SetOutputPin(DAC_5_10V_GPIO_Port, DAC_5_10V_Pin);
+    EC_Init();
+    MOT_Init();
+    SSD1322_API_init();
+    LL_TIM_EnableIT_UPDATE(LCD_TIM);
+    LL_TIM_EnableCounter(LCD_TIM);
+    LL_TIM_EnableIT_UPDATE(KEY_TIM);
+    LL_TIM_EnableCounter(KEY_TIM);
+    LL_TIM_EnableIT_UPDATE(MOT_TIM);
+    LL_TIM_EnableCounter(MOT_TIM);
+    LL_TIM_EnableCounter(TIM2);
+    LL_TIM_EnableCounter(TIM3);
+    
+    //InitGui();
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+   //FP_GetParam();
+   //fp->params.cnt++;
+   //fp->needToSave = true;
+   //FP_SaveParam();
+	 
+	LL_SYSTICK_EnableIT();
+	uint8_t br = 0;
+    
+    ModeParam_Init();
+    
+  while (1)
+  {
+    EC_UpdateEncCnt();
+      
+    if(currentTool == DRILL_TOOL) {
+        LL_GPIO_SetOutputPin(ledActiveDrillMode.port, ledActiveDrillMode.pin);
+        LL_GPIO_ResetOutputPin(ledActiveTapMode.port, ledActiveTapMode.pin);
+    }
+    if(currentTool == TAP_TOOL) {
+        LL_GPIO_SetOutputPin(ledActiveTapMode.port, ledActiveTapMode.pin);
+        LL_GPIO_ResetOutputPin(ledActiveDrillMode.port, ledActiveDrillMode.pin);
+    }
+    if(motor.status == RUNNING) {
+        LL_GPIO_SetOutputPin(ledKeySpindleStart.port, ledKeySpindleStart.pin);
+    }
+    if(motor.status == STOPPED){
+        LL_GPIO_SetOutputPin(ledKeySpindleStop.port, ledKeySpindleStop.pin);
+    }
+    if(isOrigin){
+        LL_GPIO_SetOutputPin(ledKeyAbsoluteOriginSet.port, ledKeyAbsoluteOriginSet.pin);
+    }
+		      
+    if(keyToolChange.backPulse)
+    {
+        if(motor.status == STOPPED) {
+            currentTool = !currentTool;
+            currentMode = SET_SPINDLE_RPM;
+            rpmChange = true;
+            absChange = false;
+            incChange = false;
+            rpmEdit = false;
+            absEdit = false;
+            incEdit = false;
+        }
+        
+        keyToolChange.backPulse = false;
+    }
+    if(encKey.backPulse)
+    {
+        if(currentMode != SET_ABSOLUTE_ORIGIN){
+            if(currentMode == SET_SPINDLE_RPM){
+                rpmChange = false;
+                rpmEdit = false;
+                absChange = true;
+            }
+            if(currentMode == SET_INCREMENTAL_ORIGIN){
+                rpmChange = false;
+                absChange = false;
+                incChange = false;
+                rpmEdit = false;
+                absEdit = false;
+                incEdit = false;
+            }
+            
+            currentMode++;
+            if(currentMode > SET_INCREMENTAL_ORIGIN) currentMode = SET_SPINDLE_RPM;;
+        }
+        
+        FP_GetParam();
+        fp->params.fp_drillSpeed = modeParam.drillSpeed;
+        fp->params.fp_tapSpeed = modeParam.tapSpeed;
+        fp->needToSave = true;
+        FP_SaveParam();
+        
+        encKey.backPulse = false;
+    }
+    if(keyAbsoluteOriginSet.backPulse)
+    {
+        if(currentMode == SET_ABSOLUTE_ORIGIN){
+            incChange = true;
+            absChange = false;
+            currentMode = SET_INCREMENTAL_ORIGIN;
+            isOrigin = !isOrigin;
+            if(currentTool == DRILL_TOOL) {
+                modeParam.drillCnt = 0;
+            }
+            if(currentTool == TAP_TOOL) {
+                modeParam.tapCnt = 0;
+            }
+            LL_TIM_SetCounter(TIM2, 0);
+        }
+        keyAbsoluteOriginSet.backPulse = false;
+    }
+    if(encCnt.cntDelta < 0 )
+    {
+        if(currentMode == SET_SPINDLE_RPM){
+            if(currentTool == DRILL_TOOL){
+                rpmEdit = true;
+                if(modeParam.drillSpeed < 2000)
+                    modeParam.drillSpeed += 100;
+                if(modeParam.drillSpeed > 2000)
+                    modeParam.drillSpeed = 2000;
+            }
+            else {
+                rpmEdit = true;
+                if(modeParam.tapSpeed < 200)
+                    modeParam.tapSpeed += 10;
+                if(modeParam.tapSpeed > 200)
+                    modeParam.tapSpeed = 200;
+            }
+            EC_ResetEncCnt();
+            rpmEdit = false;
+        }
+        if(currentMode == SET_INCREMENTAL_ORIGIN){
+            if(currentTool == DRILL_TOOL) {
+                incEdit = true;
+                if(modeParam.drillInc < 25000)
+                    modeParam.drillInc += 25;
+                if(modeParam.drillInc > 25000)
+                    modeParam.drillInc = 25000;
+            }
+            else {
+                incEdit = true;
+                if(modeParam.tapInc < 25000)
+                    modeParam.tapInc += 25;
+                if(modeParam.tapInc > 25000)
+                    modeParam.tapInc = 25000; 
+            }
+            EC_ResetEncCnt();
+            incEdit = false;
+        }
+    }
+    if(encCnt.cntDelta > 0)
+    {
+        if(currentMode == SET_SPINDLE_RPM){
+            if(currentTool == DRILL_TOOL) {
+                rpmEdit = true;
+                if(modeParam.drillSpeed > 0)
+                    modeParam.drillSpeed -= 100;
+                if(modeParam.drillSpeed < 0)
+                    modeParam.drillSpeed = 0;
+            }
+            else {
+                rpmEdit = true;
+                if(modeParam.tapSpeed > 0)
+                    modeParam.tapSpeed -= 10;
+                if(modeParam.tapSpeed < 0)
+                    modeParam.tapSpeed = 0;
+            }
+            EC_ResetEncCnt();
+            rpmEdit = false;
+        }
+        if(currentMode == SET_INCREMENTAL_ORIGIN){
+            if(currentTool == DRILL_TOOL) {
+                incEdit = true;
+                if(modeParam.drillInc > 0)
+                    modeParam.drillInc -= 25;
+                if(modeParam.drillInc < 0)
+                    modeParam.drillInc = 0;
+            }
+            else {
+                incEdit = true;
+                if(modeParam.tapInc > 0)
+                    modeParam.tapInc -= 25;
+                if(modeParam.tapInc < 0)
+                    modeParam.tapInc = 0;
+            }
+            EC_ResetEncCnt();
+            incEdit = false;
+        }
+    }
+    MOT_SetSpeed(modeParam.drillSpeed);
+    
+    int32_t speed = (currentTool == DRILL_TOOL)? modeParam.drillSpeed : modeParam.tapSpeed;
+    MOT_SetSpeed(speed);
+    DrawDrillWidget(currentTool, tx_buf, 2000, speed, rpmEdit);
+    
+    int32_t inc = (currentTool == DRILL_TOOL)? modeParam.drillInc : modeParam.tapInc;
+    position.incrementalPositionInFloat = inc*0.00390625;
+    DrawAbsIncWidget(tx_buf, position.realPositionInFloat, position.incrementalPositionInFloat , absEdit, incEdit, currentMode);
+    
+  
+    uint8_t holeCnt = (currentTool == DRILL_TOOL)? modeParam.drillCnt : modeParam.tapCnt;
+    DrawCntWidget(tx_buf, holeCnt);
+    
+    send_buffer_to_OLED(tx_buf, 0, 0);
+	
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  LL_FLASH_SetLatency(LL_FLASH_LATENCY_2);
+  while(LL_FLASH_GetLatency()!= LL_FLASH_LATENCY_2)
+  {
+  }
+  LL_RCC_HSE_Enable();
+
+   /* Wait till HSE is ready */
+  while(LL_RCC_HSE_IsReady() != 1)
+  {
+
+  }
+  LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE_DIV_1, LL_RCC_PLL_MUL_9);
+  LL_RCC_PLL_Enable();
+
+   /* Wait till PLL is ready */
+  while(LL_RCC_PLL_IsReady() != 1)
+  {
+
+  }
+  LL_RCC_SetAHBPrescaler(LL_RCC_SYSCLK_DIV_1);
+  LL_RCC_SetAPB1Prescaler(LL_RCC_APB1_DIV_2);
+  LL_RCC_SetAPB2Prescaler(LL_RCC_APB2_DIV_1);
+  LL_RCC_SetSysClkSource(LL_RCC_SYS_CLKSOURCE_PLL);
+
+   /* Wait till System clock is ready */
+  while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL)
+  {
+
+  }
+  LL_Init1msTick(72000000);
+  LL_SetSystemCoreClock(72000000);
+  LL_RCC_SetADCClockSource(LL_RCC_ADC_CLKSRC_PCLK2_DIV_6);
+}
+
+/* USER CODE BEGIN 4 */
+void InitGui(){
+    draw_bitmap_8bpp(tx_buf, &KSP_LOGO, 64, 6, 128, 49);   
+    send_buffer_to_OLED(tx_buf, 0, 0); 
+    draw_rect_filled(tx_buf, 0, 0, 256, 64, 0);
+    for(int i = 0; i < 2; ++i) {
+        LL_GPIO_SetOutputPin(ledKeySpindleStart.port, ledKeySpindleStart.pin);
+        LL_GPIO_SetOutputPin(ledActiveDrillMode.port, ledActiveDrillMode.pin); 
+        LL_GPIO_SetOutputPin(ledActiveTapMode.port, ledActiveTapMode.pin); 
+        LL_GPIO_SetOutputPin(ledKeySpindleStop.port, ledKeySpindleStop.pin); 
+        LL_GPIO_SetOutputPin(ledKeyAbsoluteOriginSet.port, ledKeyAbsoluteOriginSet.pin); 
+        LL_mDelay(1000);
+        LL_GPIO_ResetOutputPin(ledKeySpindleStart.port, ledKeySpindleStart.pin);
+        LL_GPIO_ResetOutputPin(ledActiveDrillMode.port, ledActiveDrillMode.pin); 
+        LL_GPIO_ResetOutputPin(ledActiveTapMode.port, ledActiveTapMode.pin); 
+        LL_GPIO_ResetOutputPin(ledKeySpindleStop.port, ledKeySpindleStop.pin); 
+        LL_GPIO_ResetOutputPin(ledKeyAbsoluteOriginSet.port, ledKeyAbsoluteOriginSet.pin); 
+        LL_mDelay(1000);
+    }
+}
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */

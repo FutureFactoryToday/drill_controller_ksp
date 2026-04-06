@@ -1,0 +1,10 @@
+Output: Bill of Materials
+Type  : BOM
+From  : Variant [[No Variations]] of Project [MAG_SENS.PrjPcb]
+   Generated File[Bill of Materials-MAG_SENS.xlsx]
+
+
+Files Generated   : 1
+Documents Printed : 0
+
+Finished Output Generation At 11:01:35 On 27.08.2024
