@@ -260,7 +260,8 @@ bool mmodbus_readCoils(uint8_t slaveAddress, uint16_t startnumber, uint16_t leng
   txData[6] = (crc & 0x00FF);
   txData[7] = (crc & 0xFF00) >> 8;
   mmodbus_sendRaw(txData, 8, 100);
-  uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  //uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  uint16_t recLen = 1;
   if(recLen == 0)
     return false;
   if(mmodbus.rxBuf[0] != slaveAddress)
@@ -299,7 +300,8 @@ bool mmodbus_readDiscreteInputs(uint8_t slaveAddress, uint16_t startnumber, uint
   txData[6] = (crc & 0x00FF);
   txData[7] = (crc & 0xFF00) >> 8;
   mmodbus_sendRaw(txData, 8, 100);
-  uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  //uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  uint16_t recLen = 1;
   if(recLen == 0)
     return false;
   if(mmodbus.rxBuf[0] != slaveAddress)
@@ -330,7 +332,8 @@ bool mmodbus_readInputRegisters8i(uint8_t slaveAddress, uint16_t startnumber, ui
   txData[6] = (crc & 0x00FF);
   txData[7] = (crc & 0xFF00) >> 8;
   mmodbus_sendRaw(txData, 8, 100);
-  uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  //uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  uint16_t recLen = 1;
   if(recLen == 0)
     return false;
   if(mmodbus.rxBuf[0] != slaveAddress)
@@ -456,7 +459,8 @@ bool mmodbus_readHoldingRegisters8i(uint8_t slaveAddress, uint16_t startnumber, 
   txData[6] = (crc & 0x00FF);
   txData[7] = (crc & 0xFF00) >> 8;
   mmodbus_sendRaw(txData, 8, 100);
-  uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  //uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  uint16_t recLen = 1;
   if(recLen == 0)
     return false;
   if(mmodbus.rxBuf[0] != slaveAddress)
@@ -593,7 +597,8 @@ bool mmodbus_writeCoil(uint8_t slaveAddress, uint16_t number, uint8_t data)
   txData[6] = (crc & 0x00FF);
   txData[7] = (crc & 0xFF00) >> 8;
   mmodbus_sendRaw(txData, 8, 100);
-  uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  //uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
+  uint16_t recLen = 1;
   if(recLen == 0)
     return false;
   if(memcmp(txData, mmodbus.rxBuf, 8) == 0)
@@ -610,6 +615,7 @@ bool mmodbus_writeHoldingRegister16i(uint8_t slaveAddress, uint16_t number, uint
 {
   #if( _MMODBUS_RTU == 1)
   
+  uint16_t t = data;
   txData[0] = slaveAddress;
   txData[1] = MModbusCMD_WriteSingleRegister;
   txData[2] = (number & 0xFF00) >> 8;

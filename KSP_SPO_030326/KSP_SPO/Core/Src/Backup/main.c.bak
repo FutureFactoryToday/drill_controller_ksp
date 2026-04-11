@@ -122,6 +122,7 @@ int main(void)
     LL_TIM_EnableCounter(TIM4);
     LL_TIM_EnableCounter(TIM2);
     LL_TIM_EnableCounter(TIM3);
+		LL_TIM_EnableIT_UPDATE(TIM1);
 		LL_TIM_EnableCounter(TIM1);
     
     InitGui();
@@ -223,7 +224,7 @@ int main(void)
         }
         keyAbsoluteOriginSet.backPulse = false;
     }
-    if(encCnt.cntDelta < 0 )
+    if(encCnt.cntDelta > 0 )
     {
         if(currentMode == SET_SPINDLE_RPM){
             if(currentTool == DRILL_TOOL){
@@ -262,7 +263,7 @@ int main(void)
             incEdit = false;
         }
     }
-    if(encCnt.cntDelta > 0)
+    if(encCnt.cntDelta < 0)
     {
         if(currentMode == SET_SPINDLE_RPM){
             if(currentTool == DRILL_TOOL) {

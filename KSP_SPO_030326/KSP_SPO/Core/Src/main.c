@@ -122,8 +122,8 @@ int main(void)
     LL_TIM_EnableCounter(TIM4);
     LL_TIM_EnableCounter(TIM2);
     LL_TIM_EnableCounter(TIM3);
-		LL_TIM_EnableIT_UPDATE(TIM1);
-		LL_TIM_EnableCounter(TIM1);
+	LL_TIM_EnableIT_UPDATE(TIM1);
+	LL_TIM_EnableCounter(TIM1);
     
     InitGui();
   /* USER CODE END 2 */
@@ -135,15 +135,17 @@ int main(void)
    //fp->needToSave = true;
    //FP_SaveParam();
 	 
-		LL_SYSTICK_EnableIT();
-		uint8_t br = 0;
+	LL_SYSTICK_EnableIT();
+	uint8_t br = 0;
     
     ModeParam_Init();
     mmodbus_init(500);
 		
+    static uint32_t lastTick = 0;
+    
   while (1)
   {
-		EC_UpdateEncCnt();
+	EC_UpdateEncCnt();
       
     if(currentTool == DRILL_TOOL) {
         LL_GPIO_SetOutputPin(ledActiveDrillMode.port, ledActiveDrillMode.pin);
@@ -224,7 +226,7 @@ int main(void)
         }
         keyAbsoluteOriginSet.backPulse = false;
     }
-    if(encCnt.cntDelta < 0 )
+    if(encCnt.cntDelta > 0 )
     {
         if(currentMode == SET_SPINDLE_RPM){
             if(currentTool == DRILL_TOOL){
@@ -263,7 +265,7 @@ int main(void)
             incEdit = false;
         }
     }
-    if(encCnt.cntDelta > 0)
+    if(encCnt.cntDelta < 0)
     {
         if(currentMode == SET_SPINDLE_RPM){
             if(currentTool == DRILL_TOOL) {
@@ -302,7 +304,7 @@ int main(void)
             incEdit = false;
         }
     }
-    MOT_SetSpeed(modeParam.drillSpeed);
+    //MOT_SetSpeed(modeParam.drillSpeed);
     
     int32_t speed = (currentTool == DRILL_TOOL)? modeParam.drillSpeed : modeParam.tapSpeed;
     MOT_SetSpeed(speed);
@@ -316,7 +318,10 @@ int main(void)
     uint8_t holeCnt = (currentTool == DRILL_TOOL)? modeParam.drillCnt : modeParam.tapCnt;
     DrawCntWidget(tx_buf, holeCnt);
     
-    send_buffer_to_OLED(tx_buf, 0, 0);
+    if (uwTick != lastTick && uwTick % 2 == 0) { 
+        send_buffer_to_OLED(tx_buf, 0, 0);
+        lastTick = uwTick;
+    }
 	
     /* USER CODE END WHILE */
 

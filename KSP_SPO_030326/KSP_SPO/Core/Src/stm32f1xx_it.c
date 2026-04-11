@@ -186,7 +186,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-//	if (++tick%1000 == 0){
+//	if (++tick%2 == 0){
 //        if(!isOrigin) {
 //            LL_GPIO_TogglePin(ledKeyAbsoluteOriginSet.port, ledKeyAbsoluteOriginSet.pin);
 //        }
@@ -375,7 +375,7 @@ void TIM1_UP_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_UP_IRQn 0 */
 		if(LL_TIM_IsActiveFlag_UPDATE(TIM1)){
-			if (tick%2 == 0){
+			//if (tick%1 == 0){
 					if(!isOrigin) {
 							LL_GPIO_TogglePin(ledKeyAbsoluteOriginSet.port, ledKeyAbsoluteOriginSet.pin);
 					}
@@ -395,8 +395,8 @@ void TIM1_UP_IRQHandler(void)
 							incEdit = !incEdit;
 					}
 			//LL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
-		}
-	++tick;
+		//}
+	//++tick;
 	LL_TIM_ClearFlag_UPDATE(TIM1);		
 	}
   /* USER CODE END TIM1_UP_IRQn 0 */
@@ -426,9 +426,10 @@ void TIM4_IRQHandler(void)
   /* USER CODE BEGIN TIM4_IRQn 0 */
   if(LL_TIM_IsActiveFlag_UPDATE(TIM4)){
 		/**/
+    LL_TIM_ClearFlag_UPDATE(TIM4);
     cntLine = LL_TIM_GetCounter(TIM2);
-		RUL_modifRelativePosition(cntLine);
-		position.realPositionInFloat = relativePosition*0.00390625;
+	RUL_modifRelativePosition(cntLine);
+	position.realPositionInFloat = relativePosition*0.00390625;
       
     if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition <= -(modeParam.tapInc) && !modeParam.wasCheckPointForTapCnt) {
         MOT_SetDir(REVERSE);
@@ -446,11 +447,8 @@ void TIM4_IRQHandler(void)
     if(currentTool == DRILL_TOOL && motor.status == RUNNING && relativePosition >= 0) {
         modeParam.wasCheckPointForDrillCnt = false;
     }
-		
-		EC_CheckButtons();
-		
-		MOT_Control();
-	LL_TIM_ClearFlag_UPDATE(TIM4);
+	EC_CheckButtons();
+	MOT_Control();
   }
   /* USER CODE END TIM4_IRQn 0 */
   /* USER CODE BEGIN TIM4_IRQn 1 */
