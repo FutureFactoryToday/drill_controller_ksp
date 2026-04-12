@@ -96,6 +96,7 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = BOOT_Pin;
   GPIO_InitStruct.Mode = LL_GPIO_MODE_FLOATING;
   LL_GPIO_Init(BOOT_GPIO_Port, &GPIO_InitStruct);
+  
 
   /**/
   LL_GPIO_AF_SetEXTISource(LL_GPIO_AF_EXTI_PORTA, LL_GPIO_AF_EXTI_LINE2);

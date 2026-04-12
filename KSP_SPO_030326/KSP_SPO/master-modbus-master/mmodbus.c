@@ -615,7 +615,7 @@ bool mmodbus_writeHoldingRegister16i(uint8_t slaveAddress, uint16_t number, uint
 {
   #if( _MMODBUS_RTU == 1)
   
-  uint16_t t = data;
+  //uint16_t t = data;
   txData[0] = slaveAddress;
   txData[1] = MModbusCMD_WriteSingleRegister;
   txData[2] = (number & 0xFF00) >> 8;
