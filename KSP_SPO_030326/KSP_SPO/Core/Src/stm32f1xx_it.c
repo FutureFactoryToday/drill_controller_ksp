@@ -426,8 +426,10 @@ void TIM4_IRQHandler(void)
   /* USER CODE BEGIN TIM4_IRQn 0 */
   if(LL_TIM_IsActiveFlag_UPDATE(TIM4)){
 		/**/
-    LL_TIM_ClearFlag_UPDATE(TIM4);
-    cntLine = LL_TIM_GetCounter(TIM2);
+  LL_TIM_ClearFlag_UPDATE(TIM4);
+	MOT_Control();
+	EC_CheckButtons();
+  cntLine = LL_TIM_GetCounter(TIM2);
 	RUL_modifRelativePosition(cntLine);
 	position.realPositionInFloat = relativePosition*0.00390625;
       
@@ -447,8 +449,6 @@ void TIM4_IRQHandler(void)
     if(currentTool == DRILL_TOOL && motor.status == RUNNING && relativePosition >= 0) {
         modeParam.wasCheckPointForDrillCnt = false;
     }
-	EC_CheckButtons();
-	MOT_Control();
   }
   /* USER CODE END TIM4_IRQn 0 */
   /* USER CODE BEGIN TIM4_IRQn 1 */

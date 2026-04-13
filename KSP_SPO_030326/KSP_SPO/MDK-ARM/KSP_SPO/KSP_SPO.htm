@@ -3,7 +3,7 @@
 <title>Static Call Graph - [KSP_SPO\KSP_SPO.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image KSP_SPO\KSP_SPO.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Sun Apr 12 17:24:48 2026
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Mon Apr 13 14:03:01 2026
 <BR><P>
 <H3>Maximum Stack Usage =        264 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -233,8 +233,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; NVIC_EncodePriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
 </UL>
 
 <P><STRONG><a name="[180]"></a>__rt_entry_postli_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, __rtentry2.o(.ARM.Collect$$rtentry$$0000000C))
@@ -496,7 +496,9 @@ Global Symbols
 <P><STRONG><a name="[6d]"></a>DrawAbsIncWidget</STRONG> (Thumb, 776 bytes, Stack size 112 bytes, drillwidgets.o(.text.DrawAbsIncWidget))
 <BR><BR>[Stack]<UL><LI>Max Depth = 196<LI>Call Chain = DrawAbsIncWidget &rArr; draw_text &rArr; draw_char &rArr; draw_pixel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
+<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[77]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
@@ -507,8 +509,6 @@ Global Symbols
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_text
 <LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_char
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;select_font
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -516,12 +516,12 @@ Global Symbols
 <P><STRONG><a name="[7b]"></a>DrawCntWidget</STRONG> (Thumb, 178 bytes, Stack size 48 bytes, drillwidgets.o(.text.DrawCntWidget))
 <BR><BR>[Stack]<UL><LI>Max Depth = 132<LI>Call Chain = DrawCntWidget &rArr; draw_text &rArr; draw_char &rArr; draw_pixel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlenUTF8
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlenUTF8
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToStr
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_text
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;select_font
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -529,14 +529,14 @@ Global Symbols
 <P><STRONG><a name="[7c]"></a>DrawDrillWidget</STRONG> (Thumb, 296 bytes, Stack size 56 bytes, drillwidgets.o(.text.DrawDrillWidget))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = DrawDrillWidget &rArr; draw_text &rArr; draw_char &rArr; draw_pixel
 </UL>
-<BR>[Calls]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
+<BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
+<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
+<LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlenUTF8
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToStr
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_text
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;select_font
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
-<LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -646,8 +646,8 @@ Global Symbols
 <P><STRONG><a name="[a4]"></a>HAL_DMA_Abort</STRONG> (Thumb, 124 bytes, Stack size 12 bytes, stm32f1xx_hal_dma.o(.text.HAL_DMA_Abort))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = HAL_DMA_Abort
 </UL>
-<BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_AbortTransmit
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_AbortTransmit
 </UL>
 
 <P><STRONG><a name="[a9]"></a>HAL_DMA_Abort_IT</STRONG> (Thumb, 284 bytes, Stack size 40 bytes, stm32f1xx_hal_dma.o(.text.HAL_DMA_Abort_IT))
@@ -697,12 +697,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8d]"></a>HAL_GetTick</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, stm32f1xx_hal.o(.text.HAL_GetTick))
-<BR><BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_sendRaw
-<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_callback
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<BR><BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_sendRaw
+<LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_callback
 </UL>
 
 <P><STRONG><a name="[12b]"></a>HAL_IncTick</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, stm32f1xx_hal.o(.text.HAL_IncTick))
@@ -863,12 +863,12 @@ Global Symbols
 <P><STRONG><a name="[a6]"></a>HAL_UART_IRQHandler</STRONG> (Thumb, 1066 bytes, Stack size 80 bytes, stm32f1xx_hal_uart.o(.text.HAL_UART_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = HAL_UART_IRQHandler &rArr; HAL_DMA_Abort_IT
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_EndTransmit_IT
+<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort_IT
+<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_EndTransmit_IT
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Transmit_IT
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_Receive_IT
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_EndRxTransfer
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort_IT
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_DMA_Abort
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART3_IRQHandler
 <LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USART1_IRQHandler
@@ -995,13 +995,13 @@ Global Symbols
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_SetPinMode
 <LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_SetPinPull
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_drive_Init
-<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
+<BR>[Called By]<UL><LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM3_Init
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_TIM2_Init
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_SPI1_Init
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC2_Init
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC1_Init
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_GPIO_Init
+<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_drive_Init
 </UL>
 
 <P><STRONG><a name="[cb]"></a>LL_SPI_Init</STRONG> (Thumb, 144 bytes, Stack size 24 bytes, stm32f1xx_ll_spi.o(.text.LL_SPI_Init))
@@ -1030,8 +1030,8 @@ Global Symbols
 <P><STRONG><a name="[b6]"></a>LL_mDelay</STRONG> (Thumb, 74 bytes, Stack size 8 bytes, stm32f1xx_ll_utils.o(.text.LL_mDelay))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LL_mDelay
 </UL>
-<BR>[Called By]<UL><LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_msDelay
-<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitGui
+<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitGui
+<LI><a href="#[121]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_msDelay
 </UL>
 
 <P><STRONG><a name="[d3]"></a>MOT_Control</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, motor.o(.text.MOT_Control))
@@ -1061,8 +1061,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_writeHoldingRegister16i
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Start
-<LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Start
 </UL>
 
 <P><STRONG><a name="[13f]"></a>MOT_SetSpeed</STRONG> (Thumb, 80 bytes, Stack size 4 bytes, motor.o(.text.MOT_SetSpeed))
@@ -1075,8 +1075,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 184 + Unknown Stack Size
 <LI>Call Chain = MOT_Start &rArr; MOT_SetDir &rArr; mmodbus_writeHoldingRegister16i &rArr; mmodbus_sendRaw &rArr; HAL_UART_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_writeHoldingRegister16i
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_SetDir
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_SetDir
+<LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_writeHoldingRegister16i
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Control
 </UL>
@@ -1162,8 +1162,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 144 + Unknown Stack Size
 <LI>Call Chain = MX_SPI1_Init &rArr; LL_GPIO_Init &rArr; LL_GPIO_SetPinOutputType
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_SPI_Init
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_SPI_Init
 <LI><a href="#[101]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_EnableIRQ
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__NVIC_SetPriority
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NVIC_EncodePriority
@@ -1178,6 +1177,7 @@ Global Symbols
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_AF_EnableRemap_SPI1
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_APB2_GRP1_EnableClock
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_Init
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1306,9 +1306,9 @@ Global Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_drive_DC_low
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_drive_CS_low
 </UL>
-<BR>[Called By]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_send_buffer
+<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_init
+<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_send_buffer
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_set_window
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_init
 </UL>
 
 <P><STRONG><a name="[11c]"></a>SSD1322_API_data</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, ssd1322_api.o(.text.SSD1322_API_data))
@@ -1319,8 +1319,8 @@ Global Symbols
 <LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_SPI_send_byte
 <LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_HW_drive_CS_low
 </UL>
-<BR>[Called By]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_set_window
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_init
+<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_init
+<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_set_window
 </UL>
 
 <P><STRONG><a name="[11e]"></a>SSD1322_API_init</STRONG> (Thumb, 294 bytes, Stack size 32 bytes, ssd1322_api.o(.text.SSD1322_API_init))
@@ -1416,10 +1416,10 @@ Global Symbols
 <P><STRONG><a name="[11f]"></a>SSD1322_HW_drive_Init</STRONG> (Thumb, 240 bytes, Stack size 72 bytes, ssd1322_hw_driver.o(.text.SSD1322_HW_drive_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = SSD1322_HW_drive_Init &rArr; LL_GPIO_Init &rArr; LL_GPIO_SetPinOutputType
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_SPI_Enable
+<BR>[Calls]<UL><LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_Init
+<LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_SPI_Enable
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_SetOutputPin
 <LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_ResetOutputPin
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SSD1322_API_init
 </UL>
@@ -1462,11 +1462,11 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 200 + Unknown Stack Size
 <LI>Call Chain = SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; NVIC_EncodePriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCCEx_PeriphCLKConfig
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_ClockConfig
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Error_Handler
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_RCC_OscConfig
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1490,16 +1490,16 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 208 + Unknown Stack Size
 <LI>Call Chain = TIM4_IRQHandler &rArr; MOT_Control &rArr; MOT_Start &rArr; MOT_SetDir &rArr; mmodbus_writeHoldingRegister16i &rArr; mmodbus_sendRaw &rArr; HAL_UART_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Control
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EC_CheckButtons
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_SetDir
+<BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_SetDir
 <LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RUL_modifRelativePosition
+<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EC_CheckButtons
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Control
 <LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_TIM_GetCounter
 <LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_TIM_ClearFlag_UPDATE
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_TIM_IsActiveFlag_UPDATE
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xe.o(RESET)
 </UL>
@@ -1542,16 +1542,16 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_pixel
 </UL>
-<BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_text
-<LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawAbsIncWidget
+<BR>[Called By]<UL><LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawAbsIncWidget
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_text
 </UL>
 
 <P><STRONG><a name="[136]"></a>draw_pixel</STRONG> (Thumb, 198 bytes, Stack size 12 bytes, ssd1322_gfx.o(.text.draw_pixel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = draw_pixel
 </UL>
-<BR>[Called By]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_char
-<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
+<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_rect_filled
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_bitmap_8bpp
+<LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;draw_char
 </UL>
 
 <P><STRONG><a name="[6e]"></a>draw_rect_filled</STRONG> (Thumb, 134 bytes, Stack size 32 bytes, ssd1322_gfx.o(.text.draw_rect_filled))
@@ -1590,18 +1590,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[86]"></a>lockFlash</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, flashparam.o(.text.lockFlash))
-<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_DeleteParam
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_SaveParam
+<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_SaveParam
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_DeleteParam
 </UL>
 
 <P><STRONG><a name="[61]"></a>main</STRONG> (Thumb, 2220 bytes, Stack size 64 bytes, main.o(.text.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264 + Unknown Stack Size
 <LI>Call Chain = main &rArr; SystemClock_Config &rArr; HAL_RCC_ClockConfig &rArr; HAL_InitTick &rArr; HAL_NVIC_SetPriority &rArr; NVIC_EncodePriority
 </UL>
-<BR>[Calls]<UL><LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_buffer_to_OLED
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_buffer_to_OLED
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawCntWidget
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawAbsIncWidget
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DrawDrillWidget
@@ -1635,6 +1632,9 @@ Global Symbols
 <LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_TIM_EnableCounter
 <LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_TIM_EnableIT_UPDATE
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_SetOutputPin
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -1668,13 +1668,13 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 128 + Unknown Stack Size
 <LI>Call Chain = mmodbus_sendRaw &rArr; HAL_UART_Transmit_DMA &rArr; HAL_DMA_Start_IT &rArr; DMA_SetConfig
 </UL>
-<BR>[Calls]<UL><LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
+<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_ResetOutputPin
 <LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LL_GPIO_SetOutputPin
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_AbortTransmit
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_Transmit_DMA
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_writeHoldingRegister16i
 </UL>
@@ -1687,10 +1687,10 @@ Global Symbols
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_sendRaw
 <LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_crc16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Start
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Stop
-<LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_SetDir
+<BR>[Called By]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_SetDir
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Init
+<LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Start
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MOT_Stop
 </UL>
 
 <P><STRONG><a name="[70]"></a>select_font</STRONG> (Thumb, 20 bytes, Stack size 4 bytes, ssd1322_gfx.o(.text.select_font))
@@ -1720,8 +1720,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[85]"></a>unlockFlash</STRONG> (Thumb, 70 bytes, Stack size 0 bytes, flashparam.o(.text.unlockFlash))
-<BR><BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_DeleteParam
-<LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_SaveParam
+<BR><BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_SaveParam
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FP_DeleteParam
 </UL>
 
 <P><STRONG><a name="[134]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
@@ -2502,8 +2502,8 @@ Local Symbols
 <P><STRONG><a name="[a8]"></a>UART_EndRxTransfer</STRONG> (Thumb, 148 bytes, Stack size 16 bytes, stm32f1xx_hal_uart.o(.text.UART_EndRxTransfer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UART_EndRxTransfer
 </UL>
-<BR>[Called By]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_DMAError
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IRQHandler
+<LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_DMAError
 </UL>
 
 <P><STRONG><a name="[4a]"></a>UART_DMATransmitCplt</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, stm32f1xx_hal_uart.o(.text.UART_DMATransmitCplt))
@@ -2616,8 +2616,8 @@ Local Symbols
 <P><STRONG><a name="[140]"></a>LL_GPIO_ResetOutputPin</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, mmodbus.o(.text.LL_GPIO_ResetOutputPin))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = LL_GPIO_ResetOutputPin
 </UL>
-<BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_sendRaw
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_init
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_init
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mmodbus_sendRaw
 </UL>
 
 <P><STRONG><a name="[15d]"></a>_fadd1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, faddsub_clz.o(x$fpl$fadd), UNUSED)
