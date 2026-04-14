@@ -421,34 +421,41 @@ void TIM3_IRQHandler(void)
 /**
   * @brief This function handles TIM4 global interrupt.
   */
+uint16_t tim4Cnt = 0;
+
 void TIM4_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM4_IRQn 0 */
   if(LL_TIM_IsActiveFlag_UPDATE(TIM4)){
 		/**/
   LL_TIM_ClearFlag_UPDATE(TIM4);
-	MOT_Control();
-	EC_CheckButtons();
-  cntLine = LL_TIM_GetCounter(TIM2);
-	RUL_modifRelativePosition(cntLine);
-	position.realPositionInFloat = relativePosition*0.00390625;
-      
-    if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition <= -(modeParam.tapInc) && !modeParam.wasCheckPointForTapCnt) {
-        MOT_SetDir(REVERSE);
-        ++modeParam.tapCnt;
-        modeParam.wasCheckPointForTapCnt = true;
+    if(tim4Cnt%2 == 0) {
+        MOT_Control();
     }
-    if(currentTool == DRILL_TOOL && motor.status == RUNNING && relativePosition <= -(modeParam.drillInc) && !modeParam.wasCheckPointForDrillCnt) {
-        ++modeParam.drillCnt;
-        modeParam.wasCheckPointForDrillCnt = true;
+    else{
+        EC_CheckButtons();
+        cntLine = LL_TIM_GetCounter(TIM2);
+        RUL_modifRelativePosition(cntLine);
+        position.realPositionInFloat = relativePosition*0.00390625;
+          
+        if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition <= -(modeParam.tapInc) && !modeParam.wasCheckPointForTapCnt) {
+            MOT_SetDir(REVERSE);
+            ++modeParam.tapCnt;
+            modeParam.wasCheckPointForTapCnt = true;
+        }
+        if(currentTool == DRILL_TOOL && motor.status == RUNNING && relativePosition <= -(modeParam.drillInc) && !modeParam.wasCheckPointForDrillCnt) {
+            ++modeParam.drillCnt;
+            modeParam.wasCheckPointForDrillCnt = true;
+        }
+        if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition >= 0) {
+            MOT_SetDir(FORWARD);
+            modeParam.wasCheckPointForTapCnt = false;
+        }
+        if(currentTool == DRILL_TOOL && motor.status == RUNNING && relativePosition >= 0) {
+            modeParam.wasCheckPointForDrillCnt = false;
+        }
     }
-    if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition >= 0) {
-        MOT_SetDir(FORWARD);
-        modeParam.wasCheckPointForTapCnt = false;
-    }
-    if(currentTool == DRILL_TOOL && motor.status == RUNNING && relativePosition >= 0) {
-        modeParam.wasCheckPointForDrillCnt = false;
-    }
+    ++tim4Cnt;
   }
   /* USER CODE END TIM4_IRQn 0 */
   /* USER CODE BEGIN TIM4_IRQn 1 */
