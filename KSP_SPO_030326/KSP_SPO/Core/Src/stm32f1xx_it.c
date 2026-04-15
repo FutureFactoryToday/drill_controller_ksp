@@ -431,9 +431,9 @@ void TIM4_IRQHandler(void)
   LL_TIM_ClearFlag_UPDATE(TIM4);
     if(tim4Cnt%2 == 0) {
         MOT_Control();
+        EC_CheckButtons();
     }
     else{
-        EC_CheckButtons();
         cntLine = LL_TIM_GetCounter(TIM2);
         RUL_modifRelativePosition(cntLine);
         position.realPositionInFloat = relativePosition*0.00390625;
@@ -447,7 +447,7 @@ void TIM4_IRQHandler(void)
             ++modeParam.drillCnt;
             modeParam.wasCheckPointForDrillCnt = true;
         }
-        if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition >= 0) {
+        if(currentTool == TAP_TOOL && motor.status == RUNNING && relativePosition >= 0 && motor.dir != FORWARD) {
             MOT_SetDir(FORWARD);
             modeParam.wasCheckPointForTapCnt = false;
         }

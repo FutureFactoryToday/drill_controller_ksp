@@ -628,7 +628,7 @@ bool mmodbus_writeHoldingRegister16i(uint8_t slaveAddress, uint16_t number, uint
   txData[7] = (crc & 0xFF00) >> 8;
   mmodbus_sendRaw(txData, 8, 100);
   //uint16_t recLen = mmodbus_receiveRaw(mmodbus.timeout);
-	uint16_t recLen = 1;
+    uint16_t recLen = 1;
   if(recLen == 0)
     return false;
   if(memcmp(txData, mmodbus.rxBuf, 8) == 0)

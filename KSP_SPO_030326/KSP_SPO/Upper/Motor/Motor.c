@@ -164,6 +164,7 @@ void MOT_SetDir (dir_t dir){
 	
 }
 void MOT_Start (void){
+    motor.status = RUNNING;
 	MOT_SetDir(motor.dir);
 #if defined (DAC_CONTROL)
 	LL_DAC_ConvertData12RightAligned(DAC,LL_DAC_CHANNEL_1, motor.speed);
@@ -171,7 +172,6 @@ void MOT_Start (void){
     uint16_t tempSpeed = (motor.speed/60) * 100; // rot/min /60 sec /0.01
     mmodbus_writeHoldingRegister16i(MOT_ADR,SPEED_REG,tempSpeed); 
 #endif
-	motor.status = RUNNING;
 }
 void MOT_Stop (void){
 #if defined (DAC_CONTROL)
